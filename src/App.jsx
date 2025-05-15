@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const WORK_LAT = 51.7876584;
 const WORK_LNG = 4.6560781;
 
 function getDistance(lat1, lon1, lat2, lon2) {
   const R = 6371e3;
-  const φ1 = lat1 * Math.PI / 180;
-  const φ2 = lat2 * Math.PI / 180;
-  const Δφ = (lat2 - lat1) * Math.PI / 180;
-  const Δλ = (lon2 - lon1) * Math.PI / 180;
+  const φ1 = (lat1 * Math.PI) / 180;
+  const φ2 = (lat2 * Math.PI) / 180;
+  const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+  const Δλ = ((lon2 - lon1) * Math.PI) / 180;
   const a =
-    Math.sin(Δφ / 2) ** 2 +
-    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
+    Math.sin(Δφ / 2) ** 2 + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
@@ -53,7 +52,11 @@ export default function App() {
           );
           setFormVisible(true);
         } else {
-          setStatus(`Niet op locatie. Jouw coördinaten: ${lat}, ${lng}. Afstand: ${distance.toFixed(2)} meter.`);
+          setStatus(
+            `Niet op locatie. Jouw coördinaten: ${lat}, ${lng}. Afstand: ${distance.toFixed(
+              2
+            )} meter.`
+          );
         }
       },
       () => {
@@ -88,7 +91,11 @@ export default function App() {
   if (!formVisible) {
     return (
       <main>
-        <img src="/breeclean-logo.webp" alt="Logo" className="logo" />
+        <img
+          src="https://raw.githubusercontent.com/NormanDorst/tijdregistratie/main/breeclean-logo.png"
+          alt="Logo"
+          className="logo"
+        />
         <h2>{status}</h2>
       </main>
     );
@@ -96,7 +103,11 @@ export default function App() {
 
   return (
     <main>
-      <img src="/breeclean-logo.webp" alt="Logo" className="logo" />
+      <img
+        src="https://raw.githubusercontent.com/NormanDorst/tijdregistratie/main/breeclean-logo.webp"
+        alt="Logo"
+        className="logo"
+      />
       <form onSubmit={handleSubmit}>
         <p>{greeting}</p>
         <p dangerouslySetInnerHTML={{ __html: message }}></p>
@@ -109,7 +120,9 @@ export default function App() {
               onClick={() => setAction(label)}
             >
               <img
-                src={`https://raw.githubusercontent.com/NormanDorst/tijdregistratie/main/${label === "Inklokken" ? "checkin" : "checkout"}.png`}
+                src={`https://raw.githubusercontent.com/NormanDorst/tijdregistratie/main/${
+                  label === "Inklokken" ? "checkin" : "checkout"
+                }.png`}
                 alt={label}
               />
               <span>{label}</span>
