@@ -1,6 +1,7 @@
 {
   "name": "time-registration-app",
   "version": "1.0.0",
+  "homepage": "https://normandorst.github.io/breeclean-time-registration",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
